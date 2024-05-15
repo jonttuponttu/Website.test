@@ -1,3 +1,6 @@
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -246,30 +249,12 @@
         specialInfo.classList.remove('active');
       });
       itemInfo.classList.toggle('active');
-    }
+   }
+  
 
-    function dropLetters() {
-      var specialContainer = document.querySelector('.special-container');
-      var letters = ['S', 'P', 'E', 'C', 'I', 'A', 'L'];
-      var letterSize = 50; // Adjust size as needed
-
-      letters.forEach(function(letter, index) {
-        var draggableLetter = document.createElement('div');
-        draggableLetter.textContent = letter;
-        draggableLetter.className = 'draggable-letter';
-        draggableLetter.style.top = (index * letterSize) + 'px';
-        draggableLetter.style.left = '50%'; // Start position from the center
-        draggableLetter.style.transform = 'translateX(-50%)'; // Center horizontally
-        draggableLetter.setAttribute('draggable', true);
-
-        draggableLetter.addEventListener('dragstart', function(event) {
-          event.dataTransfer.setData('text', event.target.textContent);
-        });
-
-        specialContainer.appendChild(draggableLetter);
-      });
-    }
-  </script>
+  
+ </script>
 </body>
 </html>
+
 
