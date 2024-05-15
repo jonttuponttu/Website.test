@@ -95,6 +95,17 @@
       border-radius: 4px;
       cursor: pointer;
     }
+
+    /* Added styles for draggable letters */
+    .draggable-letter {
+      position: absolute;
+      cursor: move;
+      background-color: #fff;
+      color: #000;
+      padding: 5px 10px;
+      border-radius: 4px;
+      user-select: none;
+    }
   </style>
 </head>
 <body>
@@ -149,10 +160,11 @@
     <!-- Intelligence Info -->
     <div class="special-info" id="intelligence">
       <h2>Intelligence</h2>
-      <img src="https://gamepedia.cursecdn.com/fallout_gamepedia/6/67/FO4Intelligence.gif?version=8ef35d2ded34cef47fe36ceafa84b37f" alt="Intelligence GIF">
-      <p>Intelligence is a measure of your overall mental acuity. It affects the number of experience points earned and the condition of crafted items.</p>
+<img src="https://gamepedia.cursecdn.com/fallout_gamepedia/6/67/FO4Intelligence.gif?version=8ef35d2ded34cef47fe36ceafa84b37f" alt="Intelligence GIF">
+<p>Intelligence is a measure of your overall mental acuity. It affects the number of experience points earned and the condition of crafted items.</p>
 </div>
-<!-- Agility Info -->
+    
+    <!-- Agility Info -->
 <div class="special-info" id="agility">
   <h2>Agility</h2>
   <img src="https://gamepedia.cursecdn.com/fallout_gamepedia/e/ea/FO4Agility.gif?version=067550bb9d8ff325bde1b06b21e91f76" alt="Agility GIF">
@@ -166,41 +178,42 @@
   <p>Luck is a measure of your general good fortune. It affects the recharge rate of critical hits and the chance of finding better items.</p>
 </div>
 
-<!-- Tathu Ritvanen -->
+<!-- Menu Option 1 Info -->
 <div class="special-info" id="option1">
   <h2>Option 1</h2>
-  <p>Flying Horse.</p>
-  <img src="https://media1.tenor.com/m/e6BjYwRhL_EAAAAC/horse.gif" alt="Option 1 Image">
+  <p>This is the information for Option 1.</p>
+  <img src="your_option1_image.gif" alt="Option 1 Image">
 </div>
 
-<!-- Fallout 1 -->
+<!-- Menu Option 2 Info -->
 <div class="special-info" id="option2">
   <h2>Option 2</h2>
-  <p>This is Fallout 1.</p>
-  <img src="https://media1.tenor.com/m/n0NZHAeZK-MAAAAC/fallout-fallout2.gif" alt="Option 2 Image">
+  <p>This is the information for Option 2.</p>
+  <img src="your_option2_image.gif" alt="Option 2 Image">
 </div>
 
-<!-- My sunshine -->
+<!-- Menu Option 3 Info -->
 <div class="special-info" id="option3">
   <h2>Option 3</h2>
-  <p>This is lebron.</p>
-  <img src="https://media1.tenor.com/m/BxOD5xq4VfIAAAAC/lebron-sunshine-lebron-james-sunshine.gif" alt="This is">
+  <p>This is the information for Option 3.</p>
+  <img src="your_option3_image.gif" alt="Option 3 Image">
 </div>
 
-<!-- Cyberpunk 2077 -->
+<!-- Menu Option 4 Info -->
 <div class="special-info" id="option4">
   <h2>Option 4</h2>
-  <p>This is CyberBug 2077.</p>
-  <img src="https://media1.tenor.com/m/LOg8BM-As70AAAAd/cyberpunk-bug.gif" alt="Cyberpunk 2077">
+  <p>This is the information for Option 4.</p>
+  <img src="your_option4_image.gif" alt="Option 4 Image">
 </div>
-  </div>
-<button class="change-bg-button" onclick="changeBackground()">Change Background</button>
+     </div>
+  <!-- Button to drop letters -->
+<button class="change-bg-button" onclick="dropLetters()">Drop Letters</button>
 
   <script>
     var backgrounds = [
-      'https://media1.tenor.com/m/S7vDltYYkW4AAAAC/trash-your-post.gif',
       'https://media1.tenor.com/m/swOXpPjtYesAAAAd/radiation-puppet.gif',
-      'https://media1.tenor.com/m/NshXgVlX2WAAAAAC/toxic-hazard.gif'
+      'https://media1.tenor.com/images/bbb30f0a0b2fb276cdcb59b9b93d4f9d/tenor.gif',
+      'https://media1.tenor.com/images/23b15b4d9c0e1b13d06f303f15b781bb/tenor.gif'
     ];
 
     var currentBackgroundIndex = 0;
@@ -234,6 +247,29 @@
       });
       itemInfo.classList.toggle('active');
     }
+
+    function dropLetters() {
+      var specialContainer = document.querySelector('.special-container');
+      var letters = ['S', 'P', 'E', 'C', 'I', 'A', 'L'];
+      var letterSize = 50; // Adjust size as needed
+
+      letters.forEach(function(letter, index) {
+        var draggableLetter = document.createElement('div');
+        draggableLetter.textContent = letter;
+        draggableLetter.className = 'draggable-letter';
+        draggableLetter.style.top = (index * letterSize) + 'px';
+        draggableLetter.style.left = '50%'; // Start position from the center
+        draggableLetter.style.transform = 'translateX(-50%)'; // Center horizontally
+        draggableLetter.setAttribute('draggable', true);
+
+        draggableLetter.addEventListener('dragstart', function(event) {
+          event.dataTransfer.setData('text', event.target.textContent);
+        });
+
+        specialContainer.appendChild(draggableLetter);
+      });
+    }
   </script>
 </body>
 </html>
+
